@@ -1,6 +1,5 @@
 part of 'contact_bloc.dart';
 
-@immutable
 abstract class ContactEvent extends Equatable {
   const ContactEvent();
 
@@ -8,31 +7,32 @@ abstract class ContactEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadContactEvent extends ContactEvent {
-  @override
-  List<Object> get props => [];
-}
+class CreateContact extends ContactEvent {
+  final ContactModel contact;
 
-class AddContactEvent extends ContactEvent {
-  final List<ContactModel> contact;
+  const CreateContact({required this.contact});
 
-  AddContactEvent({required this.contact});
   @override
   List<Object> get props => [contact];
 }
 
-class UpdateContactEvent extends ContactEvent {
+class GetContact extends ContactEvent {}
+
+class UpdateContact extends ContactEvent {
   final int index;
   final ContactModel contact;
-  UpdateContactEvent({required this.index, required this.contact});
+
+  const UpdateContact({required this.contact, required this.index});
+
   @override
-  List<Object> get props => [index, contact];
+  List<Object> get props => [contact, index];
 }
 
-class DeleteContactEvent extends ContactEvent {
+class DeleteContact extends ContactEvent {
   final int index;
 
-  DeleteContactEvent({required this.index});
+  const DeleteContact({required this.index});
+
   @override
   List<Object> get props => [index];
 }

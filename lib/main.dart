@@ -1,6 +1,5 @@
 import 'package:bloc_excercise/bloc/contact_bloc.dart';
-import 'package:bloc_excercise/repositories/contact.dart';
-import 'package:bloc_excercise/screen/home.dart';
+import 'package:bloc_excercise/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,12 +15,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ContactBloc>(
-          create: (context) => ContactBloc(ContactRepo()),
+          create: (context) => ContactBloc(),
         )
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        home: HomeScreen(),
       ),
     );
   }

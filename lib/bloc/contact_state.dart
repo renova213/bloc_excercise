@@ -1,6 +1,5 @@
 part of 'contact_bloc.dart';
 
-@immutable
 abstract class ContactState extends Equatable {
   const ContactState();
 
@@ -8,20 +7,21 @@ abstract class ContactState extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadedContactState extends ContactState {
-  final List<ContactModel> contact;
+class ContactLoading extends ContactState {}
 
-  LoadedContactState({required this.contact});
+class ContactFailed extends ContactState {
+  final String message;
+  const ContactFailed({required this.message});
+
   @override
-  List<Object> get props => [contact];
+  List<Object> get props => [message];
 }
 
-class LoadingContactState extends ContactState {}
+class ContactLoad extends ContactState {
+  final List<ContactModel> contacts;
 
-class FailureContactState extends ContactState {
-  final String error;
+  const ContactLoad({required this.contacts});
 
-  FailureContactState({required this.error});
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [contacts];
 }
